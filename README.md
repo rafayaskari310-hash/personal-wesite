@@ -1,2 +1,0 @@
-# personal-wesite
-assignment
