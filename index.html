@@ -1,62 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rafay - Personal Website</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Healthcare Facilities Map: Islamabad &amp; Rawalpindi</title>
+<meta name="description" content="Web GIS application showing hospitals, clinics, doctors and pharmacies in Islamabad and Rawalpindi using the OpenStreetMap Overpass API.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to My Personal Website</h1>
-        <img src="profile.jpg" alt="Profile Photo" class="profile-photo">
-        <p>Hello! My name is Rafay. I am a university student passionate about GIS, hydrology, and remote sensing.</p>
-    </header>
+<header class="top">
+  <h1>Healthcare Facilities Map</h1>
+  <p>Hospitals, clinics, doctors and pharmacies in Islamabad &amp; Rawalpindi</p>
+</header>
 
-    <section id="education">
-        <h2>Educational Background</h2>
-        <ul>
-            <li>Bachelor’s in RS and GIS, Semester 7</li>
-            <li>Department of METEROLOGY, COMSATS University</li>
-            <li>Achievements: Attended GIS workshops</li>
-        </ul>
+<main class="layout">
+  <aside class="panel" aria-label="Controls and results">
+    <details class="about" open>
+      <summary>About this map</summary>
+      <p><strong>Study area:</strong> Islamabad Capital Territory and Rawalpindi city, Punjab, Pakistan, a twin-city region of over 4 million people.</p>
+      <p><strong>Data source:</strong> OpenStreetMap, retrieved live from the Overpass API (<code>overpass-api.de</code>) with <code>fetch()</code>.</p>
+      <p><strong>Attribution:</strong> &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL). Map built with <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a>.</p>
+    </details>
+
+    <section class="controls">
+      <label for="area">Study area</label>
+      <select id="area">
+        <option value="both">Islamabad &amp; Rawalpindi</option>
+        <option value="isb">Islamabad only</option>
+        <option value="rwp">Rawalpindi only</option>
+      </select>
+
+      <label for="search">Search by name, speciality or address</label>
+      <input id="search" type="search" placeholder="e.g. PIMS, dental, Saddar" autocomplete="off">
+
+      <fieldset id="types"><legend>Facility type</legend></fieldset>
+
+      <label class="inline"><input type="checkbox" id="emergency"> Emergency services only</label>
     </section>
 
-    <section id="skills">
-        <h2>Skills</h2>
-        <ul>
-            <li>Technical: Python, GIS (ArcMap, QGIS), Remote Sensing</li>
-            <li>Soft Skills: Teamwork, Presentation, Problem-solving</li>
-        </ul>
-    </section>
+    <div class="status" id="count" role="status" aria-live="polite"></div>
+    <ul id="list" class="list"></ul>
 
-    <section id="hobbies">
-        <h2>Hobbies</h2>
-        <p>I enjoy reading, coding, and exploring new geospatial tools.</p>
+    <section id="info" class="info" aria-live="polite">
+      <h2>Facility details</h2>
+      <p class="hint">Select a point on the map or a result in the list.</p>
     </section>
+  </aside>
 
-    <section id="interests">
-        <h2>Interests</h2>
-        <p>I am deeply interested in Remote Sensing, GIS, Artificial Intelligence, and Geospatial Technologies.</p>
-    </section>
+  <div class="mapwrap">
+    <div id="map" aria-label="Interactive map"></div>
+    <div id="loading" class="overlay"><div class="spinner"></div><span>Loading facilities from OpenStreetMap…</span></div>
+    <div id="error" class="overlay error" hidden>
+      <p id="errorMsg"></p>
+      <button id="retry" type="button">Try again</button>
+    </div>
+  </div>
+</main>
 
-    <section id="projects">
-        <h2>Projects & Experiences</h2>
-        <ul>
-            <li>Flood Mapping using satellite imagery</li>
-            <li>Weather Analysis with GIS tools</li>
-        </ul>
-    </section>
+<footer>Data &copy; OpenStreetMap contributors &middot; Overpass API &middot; Tiles &copy; OpenStreetMap &middot; Leaflet</footer>
 
-    <section id="goals">
-        <h2>Future Goals</h2>
-        <p>My goal is to develop expertise in geospatial technologies and pursue a career in environmental monitoring and spatial data science.</p>
-    </section>
-
-    <footer>
-        <h2>Contact</h2>
-        <p>Connect with me on <a href="https://www.linkedin.com/in/mirza-muhammad-rafay-askari-a3a55a159/" target="_blank">LinkedIn</a></p>
-        <p>Email: rafayaskari310@gmail.com</p>
-    </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
